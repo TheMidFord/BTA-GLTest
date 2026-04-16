@@ -26,6 +26,9 @@
 		],
 		"recipesReady": [
 			"malicedev.gltest.Main"
+		],
+		"initModels": [
+			"malicedev.gltest.ModClient"
 		]
 	},
 	"mixins": [

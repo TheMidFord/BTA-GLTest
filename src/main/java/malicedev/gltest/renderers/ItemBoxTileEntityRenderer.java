@@ -1,6 +1,7 @@
 package malicedev.gltest.renderers;
 
 import malicedev.gltest.tileentities.ItemBoxTileEntity;
+import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.client.render.tileentity.TileEntityRenderer;
 import net.minecraft.core.block.entity.TileEntity;
@@ -15,17 +16,17 @@ public class ItemBoxTileEntityRenderer extends TileEntityRenderer<ItemBoxTileEnt
 		float progress = itemBoxTileEntity.ticks + partialTick;
 
 		GL11.glPushMatrix();
-		GL11.glEnableClientState(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glTranslatef((float) x, (float) y + MathHelper.sin(progress/10f)/8f, (float) z);
 
 		GL11.glTranslatef(0.5f, 0.5f, 0.5f);
-		GL11.glRotatef(progress/8f,0, 1, 0);
+		GL11.glRotatef(MathHelper.toDegrees(progress/8f),0, 1, 0);
 		GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
 
 
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		tessellator.startDrawing(GL11.GL_TRIANGLES);
-		tessellator.setLightmapCoord(15);
+		tessellator.setLightmapCoord(LightmapHelper.getLightmapCoord(15, 15));
 
 
 		float halfWidth = 1/4f;
@@ -123,6 +124,7 @@ public class ItemBoxTileEntityRenderer extends TileEntityRenderer<ItemBoxTileEnt
 			}
 		}
 		tessellator.draw();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glPopMatrix();
 	}
 }
