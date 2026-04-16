@@ -17,6 +17,7 @@ public class ItemBoxTileEntityRenderer extends TileEntityRenderer<ItemBoxTileEnt
 
 		GL11.glPushMatrix();
 		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glShadeModel(GL11.GL_SMOOTH);
 		GL11.glTranslatef((float) x, (float) y + MathHelper.sin(progress/10f)/8f, (float) z);
 
 		GL11.glTranslatef(0.5f, 0.5f, 0.5f);
@@ -125,6 +126,7 @@ public class ItemBoxTileEntityRenderer extends TileEntityRenderer<ItemBoxTileEnt
 		}
 		tessellator.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glShadeModel(GL11.GL_FLAT);
 		GL11.glPopMatrix();
 	}
 }
