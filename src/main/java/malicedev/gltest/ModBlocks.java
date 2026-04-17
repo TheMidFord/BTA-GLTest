@@ -1,8 +1,10 @@
 package malicedev.gltest;
+import malicedev.gltest.blocklogic.BlockLogicItemBox;
 import malicedev.gltest.tileentities.ItemBoxTileEntity;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.material.Material;
+import net.minecraft.core.sound.BlockSounds;
 import net.minecraft.core.util.collection.NamespaceID;
 import turniplabs.halplibe.helper.BlockBuilder;
 import turniplabs.halplibe.helper.EntityHelper;
@@ -21,7 +23,8 @@ public class ModBlocks {
 
 		ItemBox = new BlockBuilder(MOD_ID)
 			.setTileEntity(ItemBoxTileEntity::new)
-			.build("itembox","itembox",blockId++,(block) -> new BlockLogic(block, Material.glass));
+			.setBlockSound(BlockSounds.GLASS)
+			.build("itembox","itembox",blockId++,(block) -> new BlockLogicItemBox(block, Material.glass));
 
 	}
 }
