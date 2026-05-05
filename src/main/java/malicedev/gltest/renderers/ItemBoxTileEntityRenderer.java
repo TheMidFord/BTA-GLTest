@@ -7,6 +7,7 @@ import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.client.render.tileentity.TileEntityRenderer;
 import net.minecraft.core.util.helper.MathHelper;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL45;
 
 import static net.minecraft.client.render.customatlas.CustomAtlasHandler.mc;
 
@@ -23,10 +24,10 @@ public class ItemBoxTileEntityRenderer extends TileEntityRenderer<ItemBoxTileEnt
 		GL11.glRotatef(MathHelper.toDegrees(progress / 8f), 0, 1, 0);
 		GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
 
-
+		GL11.glDisable(GL11.GL_LIGHTING);
 		renderQuestion(tessellator);
 		renderOctahedron(tessellator);
-
+		GL11.glEnable(GL11.GL_LIGHTING);
 
 		GL11.glPopMatrix();
 	}
@@ -134,6 +135,7 @@ public class ItemBoxTileEntityRenderer extends TileEntityRenderer<ItemBoxTileEnt
 				tessellator.addVertex(0.5 + halfWidth, 0.5, 0.5 - halfWidth);
 			}
 		}
+		GL11.glScalef(0.8f,0.8f,0.8f);
 		tessellator.draw();
 
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -161,6 +163,8 @@ public class ItemBoxTileEntityRenderer extends TileEntityRenderer<ItemBoxTileEnt
 			tessellator.addVertexWithUV(0, 0, 0.5,0,1);
 			tessellator.addVertexWithUV(1, 0, 0.5,1,1);
 			tessellator.addVertexWithUV(1, 1, 0.5,1,0);
+			GL11.glScalef(0.8f,0.8f,0.8f);
+
 
 		}
 		tessellator.draw();
